@@ -5,17 +5,21 @@ let playerChoice = ''
 let createMessage = ''
 
 const newGameBtn = document.getElementById('newGame');
+const disMsg = document.querySelector('span')
+const selectBtn = document.getElementById('select')
+const userInput = document.querySelector('input');
+
 $(newGameBtn).hide();
 
 function playRound() {
     let computerChoice = computerPlay()
 
     if(computerChoice === playerChoice) {
-        createMessage = computerChoice + ' vs ' + playerChoice + ', it\'s tie!';
+        createMessage = computerChoice + ' vs ' + playerChoice + ', it\'s a tie!';
       } else if (computerChoice === 'Rock' && playerChoice === 'Paper') {
         createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
       } else if (computerChoice === 'Rock' && playerChoice === 'Scissors') {
-        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!!'
+        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
       } else if (computerChoice === 'Paper' && playerChoice === 'Rock') {
         createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
       } else if (computerChoice === 'Paper' && playerChoice === 'Scissors') {
@@ -31,14 +35,17 @@ function playRound() {
       return createMessage, alertMessage()
 }
 function alertMessage() {
-    alert(createMessage)
-    
+       
     if(createMessage !== 'Please make a proper selection.') {
-        $(selectBtn).hide(300)
-        $(newGameBtn).show(300)  
-    }
-    
+        $(selectBtn).fadeOut(200)
+        $(newGameBtn).fadeIn(700)  
 
+        disMsg.textContent = createMessage;
+        $(disMsg).show(100)
+    } else {
+        disMsg.textContent = createMessage
+        $(disMsg).show(200)
+    }
 }
 
 function getRanNum() {
@@ -56,8 +63,7 @@ function computerPlay() {
   }
 }
 
-const selectBtn = document.getElementById('select')
-const userInput = document.querySelector('input');
+
 
 selectBtn.onclick = function() {
     const inputVal = userInput.value;
@@ -67,11 +73,14 @@ selectBtn.onclick = function() {
         createMessage = 'Please make a proper selection.'
     } else {
         playerChoice = inputVal.substring(0, 1).toUpperCase() + inputVal.substring(1);
-
     }
     return playRound()
 }
 
 newGameBtn.onclick = function() {
     playerChoice = ''; 
+
+    $(disMsg).hide(100)
+    $(selectBtn).fadeIn(700)
+    $(newGameBtn).fadeOut(150)
 }
