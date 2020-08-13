@@ -1,0 +1,12 @@
+#gameArea {
+    display: grid;
+    justify-items: center;
+}
+input {
+    margin: 10px;
+}
+span {
+    text-align: center;
+    justify-items: center;
+    margin: 10px;
+}

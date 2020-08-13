@@ -41,10 +41,10 @@ function alertMessage() {
         $(newGameBtn).fadeIn(700)  
 
         disMsg.textContent = createMessage;
-        $(disMsg).show(100)
+        $(disMsg).fadeIn(100)
     } else {
         disMsg.textContent = createMessage
-        $(disMsg).show(200)
+        $(disMsg).fadeIn(200)
     }
 }
 
@@ -80,7 +80,7 @@ selectBtn.onclick = function() {
 newGameBtn.onclick = function() {
     playerChoice = ''; 
 
-    $(disMsg).hide(100)
-    $(selectBtn).fadeIn(700)
-    $(newGameBtn).fadeOut(150)
+    $(disMsg).fadeOut(50)
+    $(selectBtn).fadeIn(800)
+    $(newGameBtn).fadeOut(100)
 }
