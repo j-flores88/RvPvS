@@ -37,7 +37,7 @@ function playRound() {
 function alertMessage() {
        
     if(createMessage !== 'Please make a proper selection.') {
-        $(selectBtn).fadeOut(200)
+        $(selectBtn).fadeOut(100)
         $(newGameBtn).fadeIn(700)  
 
         disMsg.textContent = createMessage;

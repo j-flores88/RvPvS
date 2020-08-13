@@ -1,12 +1,22 @@
 #gameArea {
     display: grid;
     justify-items: center;
+    padding: 150px 10px;
 }
 input {
-    margin: 10px;
+    margin: 20px;
 }
 span {
     text-align: center;
     justify-items: center;
+    margin: 5px;
+    font-family: 'Rowdies', Arial, Helvetica, sans-serif;
+}
+#newGame, #select {
     margin: 10px;
+}
+h1 {
+    font-family: 'Rowdies', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 200px;
 }
