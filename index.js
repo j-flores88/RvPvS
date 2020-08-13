@@ -1,10 +1,46 @@
-if($){
-    alert('Success!')
+// if($){
+//     alert('Success!')
+// }
+let playerChoice = ''
+let createMessage = ''
+
+const newGameBtn = document.getElementById('newGame');
+$(newGameBtn).hide();
+
+function playRound() {
+    let computerChoice = computerPlay()
+
+    if(computerChoice === playerChoice) {
+        createMessage = computerChoice + ' vs ' + playerChoice + ', it\'s tie!';
+      } else if (computerChoice === 'Rock' && playerChoice === 'Paper') {
+        createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
+      } else if (computerChoice === 'Rock' && playerChoice === 'Scissors') {
+        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!!'
+      } else if (computerChoice === 'Paper' && playerChoice === 'Rock') {
+        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
+      } else if (computerChoice === 'Paper' && playerChoice === 'Scissors') {
+        createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
+      } else if (computerChoice === 'Scissors' && playerChoice === 'Rock') {
+        createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
+      } else if (computerChoice === 'Scissors' && playerChoice === 'Paper') {
+        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
+      } else if (playerChoice !== 'Rock' && playerChoice !== 'Paper' && playerChoice !== 'Scissors') {
+        createMessage = 'Please make a proper selection.'
+      }
+
+      return createMessage, alertMessage()
+}
+function alertMessage() {
+    alert(createMessage)
+    
+    if(createMessage !== 'Please make a proper selection.') {
+        $(selectBtn).hide(300)
+        $(newGameBtn).show(300)  
+    }
+    
+
 }
 
-function playRound(playerSelection, computerSelection) {
-
-}
 function getRanNum() {
   let ranNum = Math.floor(Math.random() * 3)
   return ranNum;
@@ -18,19 +54,24 @@ function computerPlay() {
     if(choice === i)
     return possOutcome[i]
   }
-  //console.log(choice)
 }
 
-const btn = document.querySelector('button')
+const selectBtn = document.getElementById('select')
 const userInput = document.querySelector('input');
 
-btn.onclick = function() {
+selectBtn.onclick = function() {
     const inputVal = userInput.value;
     userInput.value = '';
 
     if(inputVal.toLowerCase() !== 'rock' && inputVal.toLowerCase() !== 'paper' && inputVal.toLowerCase() !== 'scissors') {
-        alert('Error. Please make a proper selection.')
+        createMessage = 'Please make a proper selection.'
     } else {
-        alert('You chose ' + inputVal)
+        playerChoice = inputVal.substring(0, 1).toUpperCase() + inputVal.substring(1);
+
     }
+    return playRound()
+}
+
+newGameBtn.onclick = function() {
+    playerChoice = ''; 
 }
